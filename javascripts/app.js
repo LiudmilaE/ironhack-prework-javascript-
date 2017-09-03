@@ -35,7 +35,7 @@ function turnRight(rover){
 
   switch (rover.direction) {
     case "N":
-      rover.direction= "E"
+      rover.direction= "E";
       break;
     case "S":
           rover.direction= "W";
@@ -52,41 +52,46 @@ function turnRight(rover){
   //console.log("After turning right a new direction is " + rover.direction);
 }
 
-////move forward
+////move forward with boundaries
 
 function moveForward(rover){
   //console.log("moveForward was called");
-  if (rover.direction==="W") {
+
+  if (rover.direction === "W" && rover.x > 0) {
     rover.x=rover.x-1;
-  } else if (rover.directuion === "N"){
+  } else if (rover.directuion === "N" && rover.y > 0){
     rover.y=rover.y-1;
-  } else if (rover.direction==="S"){
+  } else if (rover.direction === "S" && rover.y < 9){
     rover.y=rover.y+1;
-  } else if(rover.direction === "E"){
+  } else if(rover.direction === "E" && rover.x < 9){
     rover.x=rover.x+1;
+  } else {
+    console.log("Reached bounderies - cannot move forward!");
   }
   //console.log("After moving forward a new position of rover is x: "+rover.x + " and y: "+rover.y);
 }
 
-///move backward
+///move backward with boundaries
 
 
 function moveBackward(rover){
-  console.log("moveBackward was called");
-  if (rover.direction==="W") {
+  //console.log("moveBackward was called");
+  if (rover.direction==="W" && rover.x < 9) {
     rover.x=rover.x+1;
-  } else if (rover.directuion === "N"){
+  } else if (rover.directuion === "N" && rover.y < 9){
     rover.y=rover.y+1;
-  } else if (rover.direction==="S"){
+  } else if (rover.direction === "S" && rover.y > 0){
     rover.y=rover.y-1;
-  } else if(rover.direction === "E"){
+  } else if(rover.direction === "E" && rover.x > 0){
     rover.x=rover.x-1;
+  } else {
+    console.log("Reached bounderies - cannot move backward!");
   }
 }
 
 
 ////recieved commands to move the rover and print as result travel log
-function recievedCommands(string) {
+function recievedCommands(string){
   var travelLogCoordinates=" ";
 
   for (var i = 0; i < string.length; i++) {
@@ -102,14 +107,16 @@ function recievedCommands(string) {
     } else if(string[i]==="b"){
       moveBackward(rover);
     }
+
     rover.travelLog.push([rover.x, rover.y]);
-    //console.log(rover.travelLog[i]);
+
+    console.log(rover.travelLog[i]);
     travelLogCoordinates = travelLogCoordinates + rover.travelLog[i]+ "; ";
     }
   console.log("The coordinates of the places where rover has been are:"+travelLogCoordinates);
   }
 
 
-recievedCommands("rffzzyfrf");
+recievedCommands("rffrffrbb");
 ///turnLeft(rover);
 ///moveForward(rover);
