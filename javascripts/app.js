@@ -25,6 +25,7 @@ function turnLeft(rover){
       break;
     default:
       console.log("There is no direction to turn!");
+      break;
   }
   //console.log("After turning left a new direction is " + rover.direction);
 }
@@ -38,16 +39,17 @@ function turnRight(rover){
       rover.direction= "E";
       break;
     case "S":
-          rover.direction= "W";
-        break;
+      rover.direction= "W";
+      break;
     case "W":
-        rover.direction= "N";
+      rover.direction= "N";
       break;
     case "E":
-        rover.direction= "S";
-        break;
-        default:
+      rover.direction= "S";
+      break;
+    default:
       console.log("No turn!");
+      break;
   }
   //console.log("After turning right a new direction is " + rover.direction);
 }
@@ -78,7 +80,7 @@ function moveBackward(rover){
   //console.log("moveBackward was called");
   if (rover.direction==="W" && rover.x < 9) {
     rover.x=rover.x+1;
-  } else if (rover.directuion === "N" && rover.y < 9){
+  } else if (rover.direction === "N" && rover.y < 9){
     rover.y=rover.y+1;
   } else if (rover.direction === "S" && rover.y > 0){
     rover.y=rover.y-1;
